@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1001174535622",
+    "project_id": "fir-gas-auth",
+    "storage_bucket": "fir-gas-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001174535622:android:8edb4b97e9126963e5f6c7",
+        "android_client_info": {
+          "package_name": "com.example.gas_detector_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKhPbELGTmMGGA7edqQ3u8OvME3sXtENA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
