@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gas_detector_app/auth.dart';
+import 'package:gas_detector_app/pages/home_page.dart'; // Import HomePage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,27 +20,55 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> signInWithEmailAndPassword() async {
     try {
+      print('Attempting to sign in with email: ${_controllerEmail.text}'); // Debug print
       await Auth().signInWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      print('Sign in successful'); // Debug print
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
       });
+      print('Sign in failed: $e'); // Debug print
+    } catch (e) {
+      setState(() {
+        errorMessage = 'An unexpected error occurred: $e';
+      });
+      print('Unexpected error during sign in: $e'); // Debug print
     }
   }
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
+      print('Attempting to register with email: ${_controllerEmail.text}'); // Debug print
       await Auth().createUserWithEmailAndPassword(
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      print('Registration successful'); // Debug print
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
       });
+      print('Registration failed: $e'); // Debug print
+    } catch (e) {
+      setState(() {
+        errorMessage = 'An unexpected error occurred: $e';
+      });
+      print('Unexpected error during registration: $e'); // Debug print
     }
   }
 
@@ -62,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.security, // Placeholder icon
+                    Icons.security,
                     size: 100,
                     color: Colors.white,
                   ),
@@ -83,8 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         _buildInputField('Email', _controllerEmail),
                         const SizedBox(height: 10),
-                        _buildInputField('Password', _controllerPassword,
-                            isPassword: true),
+                        _buildInputField('Password', _controllerPassword, isPassword: true),
                         const SizedBox(height: 20),
                         if (errorMessage != null && errorMessage!.isNotEmpty)
                           Text(
@@ -98,8 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                               : createUserWithEmailAndPassword,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 50, vertical: 15),
+                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -120,21 +147,18 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       setState(() {
                         isLogin = !isLogin;
+                        errorMessage = ''; // Clear error when switching
                       });
                     },
                     child: Text.rich(
                       TextSpan(
-                        text: isLogin
-                            ? 'Don\'t have an account? '
-                            : 'Already have an account? ',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                        ),
+                        text: isLogin ? 'Don\'t have an account? ' : 'Already have an account? ',
+                        style: GoogleFonts.poppins(color: Colors.white),
                         children: [
                           TextSpan(
                             text: isLogin ? 'Sign up' : 'Login',
                             style: GoogleFonts.poppins(
-                              color: const Color.fromARGB(255, 255, 166, 0), // Orange color for "Sign up" and "Login"
+                              color: const Color.fromARGB(255, 255, 166, 0),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
