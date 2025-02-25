@@ -28,13 +28,3 @@ Feel free to fork this repo, submit pull requests, or open issues for bugs/featu
 ## Credits
 Developed by Achraf Habbass. Reach out at [achraf.habbass@gmail.com] or on GitHub.
 
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/Login.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/Register.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/home_1.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/home_2.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/home_3.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/home_4.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/Menu.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/Settings.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/Add%20User.jpeg)
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/336e81cf3948aa8c7ff71761eb6d0f14e5a37e4a/User_Management.jpeg)
