@@ -28,3 +28,4 @@ Feel free to fork this repo, submit pull requests, or open issues for bugs/featu
 ## Credits
 Developed by Achraf Habbass. Reach out at [achraf.habbass@gmail.com] or on GitHub.
 
+![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/1ede3c364ca4f303ea32bcae1d57bd971c83289e/App_Screens.png)
