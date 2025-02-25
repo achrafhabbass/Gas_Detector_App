@@ -1,8 +1,8 @@
 # Gas Safety App
 
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/1ede3c364ca4f303ea32bcae1d57bd971c83289e/App_Screens.png)
-
 A mobile application designed to detect gas leaks in real-time, alert users to potential hazards, and provide safety recommendations. Built to enhance home and workplace safety using Flutter and Firebase.
+
+![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/1ede3c364ca4f303ea32bcae1d57bd971c83289e/App_Screens.png)
 
 
 ## Features
