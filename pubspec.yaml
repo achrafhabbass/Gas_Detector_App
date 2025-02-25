@@ -51,7 +51,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
-  google_fonts: ^6.1.0  # Replace with the latest version available
+  flutter_launcher_icons: ^0.13.1 # Use the latest version from pub.dev
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,6 +63,14 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  # Add your assets if not already there
+  assets:
+    - assets/icons/app_icon.png
+
+flutter_launcher_icons:
+  android: "launcher_icon" # Name for Android
+  ios: true # Enable for iOS
+  image_path: "assets/icons/app_icon.png" # Path to your icon
 
   # To add assets to your application, add an assets section, like this:
   #assets:
