@@ -210,7 +210,7 @@ class _UserManagementPageState extends State<UserManagementPage> {
                           if (formKey.currentState!.validate()) {
                             if (isUpdate) {
                               await _updateUser(
-                                  user!['email'],
+                                  user['email'],
                                   emailController.text,
                                   passwordController.text);
                             } else {
@@ -343,8 +343,8 @@ class _UserManagementPageState extends State<UserManagementPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showUserDialog(),
         backgroundColor: Colors.blue.shade800,
-        child: const Icon(Icons.add, color: Colors.white),
         tooltip: 'Ajouter un utilisateur',
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

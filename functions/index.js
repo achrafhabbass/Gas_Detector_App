@@ -1,19 +1,25 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+admin.initializeApp();
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+exports.sendLpgAlert = functions.database.ref("/LPG").onUpdate((change, context) => {
+    const newValue = change.after.val();
+    const previousValue = change.before.val();
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+    console.log(`LPG changed from ${previousValue} to ${newValue}`);
+
+    if (newValue > 1000 && previousValue <= 1000) {
+        const payload = {
+            notification: {
+                title: "High LPG Level Detected!",
+                body: "LPG value has exceeded 1000 PPM. Please check immediately."
+            }
+        };
+
+        return admin.messaging().sendToTopic("lpg_alerts", payload)
+            .then(() => console.log("Notification sent successfully"))
+            .catch((error) => console.error("Error sending notification:", error));
+    }
+    return null;
+});

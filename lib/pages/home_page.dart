@@ -6,6 +6,7 @@ import 'package:gas_detector_app/pages/user_management_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:gas_detector_app/auth.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,12 +18,50 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final User? user = Auth().currentUser;
   double lpgValue = 0.0;
+  bool _notificationSent = false; // To avoid spamming notifications
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref('LPG');
+  final FlutterLocalNotificationsPlugin _notificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   @override
   void initState() {
     super.initState();
+    _initializeNotifications();
     _setupRealTimeListener();
+  }
+
+  void _initializeNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings(
+            '@mipmap/ic_launcher'); // Use your app icon
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+    );
+    await _notificationsPlugin.initialize(initializationSettings);
+    print('Local notifications initialized');
+  }
+
+  Future<void> _showNotification() async {
+    const AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
+      'lpg_alert_channel', // Channel ID
+      'LPG Alerts', // Channel name
+      channelDescription: 'Notifications for high LPG levels',
+      importance: Importance.max,
+      priority: Priority.high,
+      showWhen: true,
+    );
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidDetails,
+    );
+    await _notificationsPlugin.show(
+      0, // Notification ID
+      'Niveau de gaz élevé détecté !',
+      'la valeur du gaz a dépassé 1000 PPM. Veuillez vérifier immédiatement.',
+      notificationDetails,
+    );
+    print('Local notification triggered');
   }
 
   void _setupRealTimeListener() {
@@ -32,7 +71,14 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           try {
             lpgValue = double.parse(data.toString());
-            print('LPG Value updated: $lpgValue'); // Debug print
+            print('LPG Value updated: $lpgValue');
+            if (lpgValue > 1000 && !_notificationSent) {
+              _notificationSent = true;
+              print('LPG > 1000, triggering local notification');
+              _showNotification(); // Trigger local notification
+            } else if (lpgValue <= 1000) {
+              _notificationSent = false;
+            }
           } catch (e) {
             lpgValue = 0.0;
             print('Error parsing LPG value: $e');
@@ -50,8 +96,7 @@ class _HomePageState extends State<HomePage> {
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-              builder: (context) => const LoginPage()), // Updated to LoginPage
+          MaterialPageRoute(builder: (context) => const LoginPage()),
         );
       }
     } catch (e) {
@@ -70,9 +115,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Acceuil'),
+        title: const Text('Accueil'),
         backgroundColor: Colors.blue.shade800,
-        foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+        foregroundColor: Colors.white,
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.menu, color: Colors.white),
@@ -218,5 +263,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-// Placeholder for LoginPage - replace with your actual login page

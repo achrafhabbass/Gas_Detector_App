@@ -22,6 +22,6 @@ class _WidgetTreeState extends State<WidgetTree> {
           return const LoginPage(); // User is not logged in
         }
       },
-    );
+     );
   }
 }
