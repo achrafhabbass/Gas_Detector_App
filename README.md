@@ -1,5 +1,7 @@
 # Gas Safety App
 
+![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/1ede3c364ca4f303ea32bcae1d57bd971c83289e/App_Screens.png)
+
 A mobile application designed to detect gas leaks in real-time, alert users to potential hazards, and provide safety recommendations. Built to enhance home and workplace safety using [technology/language, e.g., Python, IoT sensors].
 
 
@@ -28,4 +30,3 @@ Feel free to fork this repo, submit pull requests, or open issues for bugs/featu
 ## Credits
 Developed by Achraf Habbass. Reach out at [achraf.habbass@gmail.com] or on GitHub.
 
-![image alt](https://github.com/achrafhabbass/Gas_Detector_App/blob/1ede3c364ca4f303ea32bcae1d57bd971c83289e/App_Screens.png)
